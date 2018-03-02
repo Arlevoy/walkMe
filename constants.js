@@ -5,3 +5,12 @@ export const fontColor = {
 export const backgroundColor = {
   lightGreen: '#52AB75',
 };
+
+export const fontSize = {
+  veryLarge: 20,
+};
+
+export const fontFamily = {
+  regular: 'work-sans',
+  bold: 'work-sans-bold',
+};

@@ -1,6 +1,9 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "rnpm": {
+    "assets": ["./assets/fonts/Work_Sans"]
+  },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",

@@ -1,7 +1,7 @@
 import { color, fontFamily, fontSize } from '../../constants';
-import { Footer, Header } from '../../components';
+import { Footer } from '../../components';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 const tours = [
   { tourId: 'paris_1', tourName: 'Paris' },
@@ -10,10 +10,13 @@ const tours = [
 ];
 
 export default class Homepage extends Component {
+  static navigationOptions = {
+    title: 'WalkMe',
+    /* No more header config here! */
+  };
   render() {
     return (
-      <Fragment>
-        <Header />
+      <View style={styles.container}>
         {tours.map(({ tourName, tourId }) => (
           <TouchableOpacity key={tourId} style={styles.tourButton}>
             <View>
@@ -22,20 +25,27 @@ export default class Homepage extends Component {
           </TouchableOpacity>
         ))}
         <Footer />
-      </Fragment>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: color.white,
+    alignItems: 'stretch',
+    justifyContent: 'space-between',
+  },
   tourButton: {
     flex: 1,
     margin: 35,
-    backgroundColor: color.lightGrey,
+    backgroundColor: color.darkGrey,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 40,
-    opacity: 0.8,
+    shadowOffset: { width: 1, height: 2 },
+    opacity: 0.7,
   },
   tourText: {
     fontFamily: fontFamily.regular,

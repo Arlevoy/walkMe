@@ -1,9 +1,27 @@
-import { color } from './constants';
+import { color, fontFamily, fontSize } from './constants';
 import { Font } from 'expo';
 import { Homepage } from './pages';
-import { StyleSheet, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import React from 'react';
 
+const RootStack = StackNavigator(
+  {
+    Home: {
+      screen: Homepage,
+    },
+  },
+  {
+    initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: { height: 50, marginTop: 0, backgroundColor: color.lightGreen },
+      headerTitleStyle: {
+        color: color.white,
+        fontFamily: fontFamily.bold,
+        fontSize: fontSize.veryLarge,
+      },
+    },
+  }
+);
 export default class App extends React.Component {
   state = {
     fontLoaded: false,
@@ -16,19 +34,6 @@ export default class App extends React.Component {
     this.setState({ fontLoaded: true });
   }
   render() {
-    return this.state.fontLoaded ? (
-      <View style={styles.container}>
-        <Homepage />
-      </View>
-    ) : null;
+    return this.state.fontLoaded ? <RootStack /> : null;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: color.white,
-    alignItems: 'stretch',
-    justifyContent: 'space-between',
-  },
-});

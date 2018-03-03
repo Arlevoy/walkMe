@@ -22,7 +22,8 @@
     "prettier": "^1.9.2",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
-    "react-native-communications": "^2.2.1"
+    "react-native-communications": "^2.2.1",
+    "react-navigation": "^1.4.0"
   },
   "devDependencies": {
     "eslint-plugin-sort-imports-es6-autofix": "^0.2.2"

@@ -3,6 +3,8 @@
   "plugins": ["prettier", "react", "flowtype", "sort-imports-es6-autofix"],
   "rules": {
     "prettier/prettier": "error",
+    "import/order": "off",
+    "import/first": [2, ""],
     "sort-imports-es6-autofix/sort-imports-es6": [
       2,
       {

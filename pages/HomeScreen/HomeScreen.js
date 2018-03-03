@@ -9,7 +9,7 @@ const tours = [
   { tourId: 'london_1', tourName: 'Londres' },
 ];
 
-export default class Homepage extends Component {
+export default class HomeScreen extends Component {
   static navigationOptions = {
     title: 'WalkMe',
     /* No more header config here! */
@@ -18,7 +18,13 @@ export default class Homepage extends Component {
     return (
       <View style={styles.container}>
         {tours.map(({ tourName, tourId }) => (
-          <TouchableOpacity key={tourId} style={styles.tourButton}>
+          <TouchableOpacity
+            key={tourId}
+            style={styles.tourButton}
+            onPress={() =>
+              this.props.navigation.navigate('TourDetailsScreen', { tourId, tourName })
+            }
+          >
             <View>
               <Text style={styles.tourText}>{tourName}</Text>
             </View>
@@ -33,14 +39,14 @@ export default class Homepage extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: color.white,
+    backgroundColor: color.secondary,
     alignItems: 'stretch',
     justifyContent: 'space-between',
   },
   tourButton: {
     flex: 1,
     margin: 35,
-    backgroundColor: color.darkGrey,
+    backgroundColor: color.white,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 40,
@@ -50,6 +56,6 @@ const styles = StyleSheet.create({
   tourText: {
     fontFamily: fontFamily.regular,
     fontSize: fontSize.large,
-    color: color.white,
+    color: color.primary,
   },
 });

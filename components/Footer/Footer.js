@@ -26,7 +26,7 @@ export default class Footer extends Component {
 
 const style = {
   footerContainer: {
-    backgroundColor: color.lightGreen,
+    backgroundColor: color.primary,
     alignItems: 'center',
     padding: 30,
   },

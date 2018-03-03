@@ -1,24 +1,33 @@
 import { color, fontFamily, fontSize } from './constants';
 import { Font } from 'expo';
-import { Homepage } from './pages';
+import { HomeScreen, TourDetailsScreen } from './pages';
 import { StackNavigator } from 'react-navigation';
 import React from 'react';
 
 const RootStack = StackNavigator(
   {
     Home: {
-      screen: Homepage,
+      screen: HomeScreen,
+    },
+    TourDetailsScreen: {
+      screen: TourDetailsScreen,
     },
   },
   {
     initialRouteName: 'Home',
     navigationOptions: {
-      headerStyle: { height: 50, marginTop: 0, backgroundColor: color.lightGreen },
+      headerStyle: { height: 50, marginTop: 0, backgroundColor: color.primary },
+      headerBackTitleStyle: {
+        color: color.white,
+        fontFamily: fontFamily.bold,
+        fontSize: fontSize.veryLarge,
+      },
       headerTitleStyle: {
         color: color.white,
         fontFamily: fontFamily.bold,
         fontSize: fontSize.veryLarge,
       },
+      headerBackTitle: 'TakeMeBack',
     },
   }
 );

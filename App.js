@@ -1,6 +1,7 @@
+import { color, fontFamily, fontSize } from './constants';
 import { Font } from 'expo';
 import { Footer, Header } from './components';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 
 export default class App extends React.Component {
@@ -18,7 +19,21 @@ export default class App extends React.Component {
     return this.state.fontLoaded ? (
       <View style={styles.container}>
         <Header />
-        <Text style={{ color: 'blue' }}>Salut Jay et Lud, bienvenue sur WalkMe!</Text>
+        <TouchableOpacity style={styles.tourButton}>
+          <View>
+            <Text style={styles.tourText}>Paris</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tourButton}>
+          <View>
+            <Text style={styles.tourText}>Rome</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tourButton}>
+          <View>
+            <Text style={styles.tourText}>Londres</Text>
+          </View>
+        </TouchableOpacity>
         <Footer />
       </View>
     ) : null;
@@ -28,8 +43,22 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: color.white,
     alignItems: 'stretch',
     justifyContent: 'space-between',
+  },
+  tourButton: {
+    flex: 1,
+    margin: 35,
+    backgroundColor: color.lightGrey,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 40,
+    opacity: 0.8,
+  },
+  tourText: {
+    fontFamily: fontFamily.regular,
+    fontSize: fontSize.large,
+    color: color.white,
   },
 });

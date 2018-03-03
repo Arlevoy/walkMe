@@ -1,6 +1,6 @@
-import { backgroundColor, fontColor, fontFamily, fontSize } from '../../constants';
+import { color, fontFamily, fontSize } from '../../constants';
 import { Text, View } from 'react-native';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 export default class Header extends Component {
   render() {
@@ -14,7 +14,7 @@ export default class Header extends Component {
 
 const style = {
   headerContainer: {
-    backgroundColor: backgroundColor.lightGreen,
+    backgroundColor: color.lightGreen,
     alignItems: 'center',
     padding: 30,
     marginBottom: 20,
@@ -23,7 +23,7 @@ const style = {
     shadowOpacity: 1.0,
   },
   title: {
-    color: fontColor.white,
+    color: color.white,
     fontFamily: fontFamily.bold,
     fontSize: fontSize.veryLarge,
   },

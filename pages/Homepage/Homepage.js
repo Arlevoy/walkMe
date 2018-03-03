@@ -3,26 +3,24 @@ import { Footer, Header } from '../../components';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { Component, Fragment } from 'react';
 
+const tours = [
+  { tourId: 'paris_1', tourName: 'Paris' },
+  { tourId: 'rome_1', tourName: 'Rome' },
+  { tourId: 'london_1', tourName: 'Londres' },
+];
+
 export default class Homepage extends Component {
   render() {
     return (
       <Fragment>
         <Header />
-        <TouchableOpacity style={styles.tourButton}>
-          <View>
-            <Text style={styles.tourText}>Paris</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.tourButton}>
-          <View>
-            <Text style={styles.tourText}>Rome</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.tourButton}>
-          <View>
-            <Text style={styles.tourText}>Londres</Text>
-          </View>
-        </TouchableOpacity>
+        {tours.map(({ tourName, tourId }) => (
+          <TouchableOpacity key={tourId} style={styles.tourButton}>
+            <View>
+              <Text style={styles.tourText}>{tourName}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
         <Footer />
       </Fragment>
     );

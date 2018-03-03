@@ -1,5 +1,5 @@
 import { Font } from 'expo';
-import { Header } from './components';
+import { Footer, Header } from './components';
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
@@ -19,6 +19,7 @@ export default class App extends React.Component {
       <View style={styles.container}>
         <Header />
         <Text style={{ color: 'blue' }}>Salut Jay et Lud, bienvenue sur WalkMe!</Text>
+        <Footer />
       </View>
     ) : null;
   }
@@ -26,8 +27,9 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'stretch',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
   },
 });

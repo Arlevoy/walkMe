@@ -7,6 +7,7 @@ export const backgroundColor = {
 };
 
 export const fontSize = {
+  large: 18,
   veryLarge: 20,
 };
 

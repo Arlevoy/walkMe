@@ -1,5 +1,4 @@
-import { color, fontFamily, fontSize } from '../../constants';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Button } from '../../components';
 import Communications from 'react-native-communications';
 import React, { Component } from 'react';
 
@@ -14,25 +13,6 @@ export default class Footer extends Component {
         'Je vous contacte à propos de ...'
       );
 
-    return (
-      <TouchableOpacity onPress={sendContactEmail}>
-        <View style={style.footerContainer}>
-          <Text style={style.title}>Contact Us</Text>
-        </View>
-      </TouchableOpacity>
-    );
+    return <Button onPressAction={sendContactEmail} buttonTitle={'Contact Us'} />;
   }
 }
-
-const style = {
-  footerContainer: {
-    backgroundColor: color.primary,
-    alignItems: 'center',
-    padding: 30,
-  },
-  title: {
-    color: color.white,
-    fontFamily: fontFamily.regular,
-    fontSize: fontSize.large,
-  },
-};

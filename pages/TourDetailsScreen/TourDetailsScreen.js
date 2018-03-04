@@ -1,6 +1,6 @@
 import { Button } from '../../components';
-import { color, fontFamily, image } from '../../constants';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { color, fontFamily, tourUrl } from '../../constants';
+import { Image, Linking, StyleSheet, Text, View } from 'react-native';
 import React, { Component } from 'react';
 
 export default class TourDetailsScreen extends Component {
@@ -8,6 +8,19 @@ export default class TourDetailsScreen extends Component {
     const { params } = navigation.state;
     return { title: `${params.tourName} tour` };
   };
+
+  openTourMap = url => {
+    Linking.canOpenURL(url)
+      .then(supported => {
+        if (!supported) {
+          console.log("Can't handle url: " + url);
+        } else {
+          return Linking.openURL(url);
+        }
+      })
+      .catch(err => console.error('An error occurred', err));
+  };
+
   render() {
     const { tourName, tourId } = this.props.navigation.state.params;
     return (
@@ -26,7 +39,7 @@ export default class TourDetailsScreen extends Component {
         <View style={styles.fullDescriptionContainer}>
           <Text>{tourName}</Text>
         </View>
-        <Button onPressAction={() => console.log('coucou')} buttonTitle={'WalkMe!'} />
+        <Button onPressAction={() => this.openTourMap(tourUrl[tourId])} buttonTitle={'WalkMe!'} />
       </View>
     );
   }

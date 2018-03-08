@@ -1,6 +1,6 @@
 import { color, fontFamily, fontSize } from './constants';
 import { Font } from 'expo';
-import { HomeScreen, TourDetailsScreen } from './pages';
+import { HomeScreen, MapTourScreen, TourDetailsScreen } from './pages';
 import { StackNavigator } from 'react-navigation';
 import React from 'react';
 
@@ -11,6 +11,9 @@ const RootStack = StackNavigator(
     },
     TourDetailsScreen: {
       screen: TourDetailsScreen,
+    },
+    MapTourScreen: {
+      screen: MapTourScreen,
     },
   },
   {

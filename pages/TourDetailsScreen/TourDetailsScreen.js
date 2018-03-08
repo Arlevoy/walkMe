@@ -39,7 +39,10 @@ export default class TourDetailsScreen extends Component {
         <View style={styles.fullDescriptionContainer}>
           <Text>{tourName}</Text>
         </View>
-        <Button onPressAction={() => this.openTourMap(tourUrl[tourId])} buttonTitle={'WalkMe!'} />
+        <Button
+          onPressAction={() => this.props.navigation.navigate('MapTourScreen')}
+          buttonTitle={'WalkMe!'}
+        />
       </View>
     );
   }

@@ -1,0 +1,3 @@
+targets:
+  prod: shared-eu-west-1/cjekbjozp1lg3010784imahcg
+  default: prod

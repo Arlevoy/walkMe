@@ -3,11 +3,7 @@ import { Footer } from '../../components';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { Component } from 'react';
 
-const tours = [
-  { tourId: 'paris_1', tourName: 'Paris' },
-  { tourId: 'rome_1', tourName: 'Rome' },
-  { tourId: 'london_1', tourName: 'Londres' },
-];
+const tours = [{ tourName: 'gambetta' }, { tourName: 'rome_1' }, { tourName: 'london_1' }];
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
@@ -19,14 +15,14 @@ export default class HomeScreen extends Component {
       <View style={styles.container}>
         {tours.map(({ tourName, tourId }) => (
           <TouchableOpacity
-            key={tourId}
+            key={tourName}
             style={styles.tourButton}
             onPress={() =>
               this.props.navigation.navigate('TourDetailsScreen', { tourId, tourName })
             }
           >
             <View>
-              <Text style={styles.tourText}>{tourName}</Text>
+              <Text style={styles.tourText}>{tourName.toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
         ))}

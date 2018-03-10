@@ -1,8 +1,12 @@
-import { color, fontFamily, fontSize } from './constants';
+import { ApolloProvider } from 'react-apollo';
+import { color, fontFamily, fontSize, graphCoolEnpoint } from './constants';
 import { Font } from 'expo';
 import { HomeScreen, MapTourScreen, TourDetailsScreen } from './pages';
 import { StackNavigator } from 'react-navigation';
+import ApolloClient from 'apollo-boost';
 import React from 'react';
+
+const client = new ApolloClient({ uri: graphCoolEnpoint });
 
 const RootStack = StackNavigator(
   {
@@ -46,6 +50,10 @@ export default class App extends React.Component {
     this.setState({ fontLoaded: true });
   }
   render() {
-    return this.state.fontLoaded ? <RootStack /> : null;
+    return this.state.fontLoaded ? (
+      <ApolloProvider client={client}>
+        <RootStack />
+      </ApolloProvider>
+    ) : null;
   }
 }

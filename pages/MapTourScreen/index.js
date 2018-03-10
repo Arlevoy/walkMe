@@ -1,1 +1,1 @@
-export { default } from './MapTourScreen';
+export { default } from './MapTourScreen.component';

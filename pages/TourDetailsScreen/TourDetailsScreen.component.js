@@ -1,6 +1,6 @@
+import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import { Button } from '../../components';
-import { color, fontFamily, tourUrl } from '../../constants';
-import { Image, Linking, StyleSheet, Text, View } from 'react-native';
+import { color, fontFamily } from '../../constants';
 import React, { Component } from 'react';
 
 export default class TourDetailsScreen extends Component {
@@ -9,35 +9,29 @@ export default class TourDetailsScreen extends Component {
     return { title: `${params.tourName} tour` };
   };
 
-  openTourMap = url => {
-    Linking.canOpenURL(url)
-      .then(supported => {
-        if (!supported) {
-          console.log("Can't handle url: " + url);
-        } else {
-          return Linking.openURL(url);
-        }
-      })
-      .catch(err => console.error('An error occurred', err));
+  findTourInfo = tourName => {
+    const tours = this.props.data.allTours;
+    console.log(tours);
+    return tours && tours.find(({ name }) => name === tourName);
   };
 
   render() {
-    const { tourName, tourId } = this.props.navigation.state.params;
-    return (
+    console.log(this.props);
+    const { tourName } = this.props.navigation.state.params;
+    console.log(this.findTourInfo(tourName));
+    const { description, image } = this.findTourInfo(tourName) || {};
+    return !this.findTourInfo(tourName) ? (
+      <ActivityIndicator size="large" color={color.lightGreen} />
+    ) : (
       <View style={styles.container}>
         <View style={styles.shortDescriptionContainer}>
           <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/imageParisOne.jpeg')}
-            />
+            <Image style={styles.image} source={{ uri: image }} />
           </View>
-          <Text
-            style={styles.shortDescriptionText}
-          >{`Short description for ${tourName} tour`}</Text>
+          <Text style={styles.shortDescriptionText}>Petite description</Text>
         </View>
         <View style={styles.fullDescriptionContainer}>
-          <Text>{tourName}</Text>
+          <Text>{description}</Text>
         </View>
         <Button
           onPressAction={() => this.props.navigation.navigate('MapTourScreen')}
@@ -53,12 +47,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: color.white,
     alignItems: 'stretch',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   fullDescriptionContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 12,
   },
   shortDescriptionContainer: {
     flex: 1,
@@ -72,8 +67,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   image: {
-    height: 120,
-    width: 120,
+    height: 130,
+    width: 130,
+    resizeMode: Image.resizeMode.contain,
   },
   shortDescriptionText: {
     flex: 1,

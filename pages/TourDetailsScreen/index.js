@@ -1,1 +1,1 @@
-export { default } from './TourDetailsScreen';
+export { default } from './TourDetailsScreen.container';

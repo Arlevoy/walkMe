@@ -25,6 +25,7 @@ type Tour @model {
   id: ID! @isUnique
   name: String!
   description: String!
+  image: String! @migrationValue(value: "")
   pointOfInterests: [PointOfInterest!]! @relation(name: "TourName")
 }
 

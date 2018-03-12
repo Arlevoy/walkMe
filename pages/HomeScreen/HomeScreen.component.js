@@ -1,28 +1,30 @@
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { color, fontFamily, fontSize } from '../../constants';
 import { Footer } from '../../components';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { Component } from 'react';
-
-const tours = [{ tourName: 'gambetta' }, { tourName: 'rome_1' }, { tourName: 'london_1' }];
 
 export default class HomeScreen extends Component {
   static navigationOptions = {
     title: 'WalkMe',
     /* No more header config here! */
   };
+
   render() {
-    return (
+    const { data } = this.props;
+    return !data.allTours ? (
+      <ActivityIndicator size="large" color={color.lightGreen} />
+    ) : (
       <View style={styles.container}>
-        {tours.map(({ tourName, tourId }) => (
+        {data.allTours.map(({ name, description, image }) => (
           <TouchableOpacity
-            key={tourName}
+            key={name}
             style={styles.tourButton}
             onPress={() =>
-              this.props.navigation.navigate('TourDetailsScreen', { tourId, tourName })
+              this.props.navigation.navigate('TourDetailsScreen', { name, description, image })
             }
           >
             <View>
-              <Text style={styles.tourText}>{tourName.toUpperCase()}</Text>
+              <Text style={styles.tourText}>{name.toUpperCase()}</Text>
             </View>
           </TouchableOpacity>
         ))}
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
   tourButton: {
     flex: 1,
     margin: 35,
+    maxHeight: 100,
     backgroundColor: color.white,
     alignItems: 'center',
     justifyContent: 'center',

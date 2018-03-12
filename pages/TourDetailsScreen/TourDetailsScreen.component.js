@@ -6,23 +6,13 @@ import React, { Component } from 'react';
 export default class TourDetailsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
-    return { title: `${params.tourName} tour` };
-  };
-
-  findTourInfo = tourName => {
-    const tours = this.props.data.allTours;
-    console.log(tours);
-    return tours && tours.find(({ name }) => name === tourName);
+    return { title: `${params.name[0].toUpperCase()}${params.name.slice(1)} tour` };
   };
 
   render() {
     console.log(this.props);
-    const { tourName } = this.props.navigation.state.params;
-    console.log(this.findTourInfo(tourName));
-    const { description, image } = this.findTourInfo(tourName) || {};
-    return !this.findTourInfo(tourName) ? (
-      <ActivityIndicator size="large" color={color.lightGreen} />
-    ) : (
+    const { image, description } = this.props.navigation.state.params;
+    return (
       <View style={styles.container}>
         <View style={styles.shortDescriptionContainer}>
           <View style={styles.imageContainer}>

@@ -1,1 +1,1 @@
-export { default } from './TourDetailsScreen.container';
+export { default } from './TourDetailsScreen.component';

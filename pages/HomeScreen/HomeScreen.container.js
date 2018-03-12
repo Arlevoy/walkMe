@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import TourDetailsScreen from './TourDetailsScreen.component';
+import HomeScreen from './HomeScreen.component';
 
 const TourDescriptionQuery = gql`
   query {
@@ -13,6 +13,6 @@ const TourDescriptionQuery = gql`
   }
 `;
 
-const TourDetailsScreenContainer = graphql(TourDescriptionQuery)(TourDetailsScreen);
+const HomeScreenContainer = graphql(TourDescriptionQuery)(HomeScreen);
 
-export default TourDetailsScreenContainer;
+export default HomeScreenContainer;

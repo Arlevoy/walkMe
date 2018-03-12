@@ -25,6 +25,8 @@ type Tour @model {
   id: ID! @isUnique
   name: String!
   description: String!
+  duration: Float! @migrationValue(value: 0)
+  distance: Float! @migrationValue(value: 0)
   image: String! @migrationValue(value: "")
   pointOfInterests: [PointOfInterest!]! @relation(name: "TourName")
 }
@@ -35,4 +37,8 @@ type PointOfInterest @model {
   description: String!
   arrivalPoint: String!
   tour: Tour @relation(name: "TourName")
+  latitude: Float! @migrationValue(value: 0)
+  longitude: Float! @migrationValue(value: 0)
+  latitudeDelta: Float! @migrationValue(value: 0)
+  longitudeDelta: Float! @migrationValue(value: 0)
 }

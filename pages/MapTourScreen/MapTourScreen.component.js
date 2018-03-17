@@ -1,4 +1,5 @@
-import { AppRegistry, Dimensions, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { color } from '../../constants';
 import MapView from 'react-native-maps';
 
 import React, { Component } from 'react';
@@ -6,17 +7,56 @@ import React, { Component } from 'react';
 export default class MapTourScreen extends Component {
   static navigationOptions = { title: 'MapTourScreen' };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      latitude: null,
+      longitude: null,
+      error: null,
+    };
+  }
+
+  componentDidMount() {
+    navigator.geolocation.watchPosition(
+      position => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      error => {
+        console.warn(error);
+        this.setState({ error: error.message });
+      },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchId);
+  }
+
   render() {
-    return (
+    const { latitude, longitude } = this.state;
+    return !latitude || !longitude ? (
+      <ActivityIndicator size="large" color={color.lightGreen} />
+    ) : (
       <View style={styles.tourMapContainer}>
         <View style={styles.mapContainer}>
           <MapView
+            provider="google"
+            showsUserLocation
+            showsCompass
+            followsUserLocation
+            showsPointsOfInterest
             style={styles.map}
-            initialRegion={{
-              latitude: 41.0082,
-              longitude: 28.9784,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
+            region={{
+              latitude,
+              longitude,
+              latitudeDelta: 0.003,
+              longitudeDelta: 0.003,
             }}
           />
         </View>
